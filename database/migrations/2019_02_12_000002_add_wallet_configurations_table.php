@@ -12,6 +12,11 @@ class AddWalletConfigurationsTable extends Migration
             $table->string('id')->primary();
             $table->text('value');
         });
+
+        DB::query()->from('wallet_configurations')->insert(['id' => 'expiry', 'value' => 0]);
+        DB::query()->from('wallet_configurations')->insert(['id' => 'iv', 'value' => '']);
+        DB::query()->from('wallet_configurations')->insert(['id' => 'private_key', 'value' => '']);
+        DB::query()->from('wallet_configurations')->insert(['id' => 'public_key', 'value' => '']);
     }
 
     public function down(): void
