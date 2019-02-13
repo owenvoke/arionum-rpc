@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class AddWalletConfigurationsTable extends Migration
@@ -13,10 +14,10 @@ class AddWalletConfigurationsTable extends Migration
             $table->text('value');
         });
 
-        DB::query()->from('wallet_configurations')->insert(['id' => 'expiry', 'value' => 0]);
-        DB::query()->from('wallet_configurations')->insert(['id' => 'iv', 'value' => '']);
-        DB::query()->from('wallet_configurations')->insert(['id' => 'private_key', 'value' => '']);
-        DB::query()->from('wallet_configurations')->insert(['id' => 'public_key', 'value' => '']);
+        DB::table('wallet_configurations')->insert(['id' => 'expiry', 'value' => 0]);
+        DB::table('wallet_configurations')->insert(['id' => 'iv', 'value' => '']);
+        DB::table('wallet_configurations')->insert(['id' => 'private_key', 'value' => '']);
+        DB::table('wallet_configurations')->insert(['id' => 'public_key', 'value' => '']);
     }
 
     public function down(): void
