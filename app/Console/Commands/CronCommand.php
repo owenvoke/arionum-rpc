@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class CronCommand extends Command
@@ -11,9 +12,9 @@ class CronCommand extends Command
     protected $signature = 'rpc:cron';
     protected $description = 'The cron task for managing the keystore cache expiry.';
 
-    public function handle()
+    public function handle(): void
     {
-        $expiry = \DB::query()
+        $expiry = DB::query()
             ->select(['value'])
             ->from('wallet_configurations')
             ->where('id', '=', 'expiry')
@@ -24,7 +25,7 @@ class CronCommand extends Command
             Storage::put('app/keystore', '');
 
             // Reset the expiry date
-            \DB::query()->from('wallet_configurations')->where('id', 'expiry')->update(['val' => 0]);
+            DB::query()->from('wallet_configurations')->where('id', 'expiry')->update(['val' => 0]);
         }
     }
 }
