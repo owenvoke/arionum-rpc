@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 class CronCommand extends Command
 {
     protected $signature = 'rpc:cron';
-    protected $description = 'The cron task for managing the keystore cache expiry.';
+    protected $description = 'The cron task for managing the keystore cache expiry';
 
     public function handle(): void
     {
